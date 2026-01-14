@@ -4,6 +4,13 @@ import Wrapped2025 from "./prototypes/furnitures/new";
 import Raj from "./prototypes/edtech/rajcloud";
 import Xenica from "./prototypes/others/xenica";
 import LocalLegend from "./prototypes/others/locallengend";
+import BusinessCopilotDashboard from "./prototypes/startup/main";
+import FinancialGoalPage from "./prototypes/startup/finances-section";
+import SOPEngine from "./prototypes/startup/sop-section";
+import ProductCatalogAnalysis from "./prototypes/startup/product-catalog";
+// import LifeGraph from "./prototypes/others/gofuckyourself";
+import EmployeeAnalysis from "./prototypes/startup/emp-analysis";
+import Dashboard from "./prototypes/others/fameline";
 export default function App(){
   return(
     <>
@@ -14,6 +21,16 @@ export default function App(){
         <Route path="/raj" element={<Raj/>} />
         <Route path="/xenica" element={<Xenica/>} />
         <Route path="/local-legend" element={<LocalLegend/>} />
+        {/* <Route path="/gfy" element={<LifeGraph/>} /> */}
+        <Route path="/st-up" element={<BusinessCopilotDashboard/>} />
+        <Route path="/st-up/finance" element={<FinancialGoalPage/>} />
+      <Route path="/st-up/sop" element={<SOPEngine/>} />
+            <Route path="/st-up/product-catalog" element={<ProductCatalogAnalysis/>} />
+
+            <Route path="/st-up/emp-analysis" element={<EmployeeAnalysis/>} />
+            <Route path="/fameline" element={<Dashboard/>} />
+
+
          <Route
           path="/wrapped"
           element={
