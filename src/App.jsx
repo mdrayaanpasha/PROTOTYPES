@@ -12,6 +12,7 @@ import ProductCatalogAnalysis from "./prototypes/startup/product-catalog";
 import EmployeeAnalysis from "./prototypes/startup/emp-analysis";
 import Dashboard from "./prototypes/others/fameline";
 import EclyticsLandingPage from "./prototypes/edtech/eclytics";
+import MetroPath from "./prototypes/startup/bmrcl";
 
 export default function App(){
   return(
@@ -32,6 +33,7 @@ export default function App(){
             <Route path="/st-up/emp-analysis" element={<EmployeeAnalysis/>} />
             <Route path="/fameline" element={<Dashboard/>} />
             <Route path="/eclyctics" element={<EclyticsLandingPage/>} />
+            <Route path="/bmrcl" element={<MetroPath/>} />
 
 
          <Route
