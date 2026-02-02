@@ -13,7 +13,9 @@ import EmployeeAnalysis from "./prototypes/startup/emp-analysis";
 import Dashboard from "./prototypes/others/fameline";
 import EclyticsLandingPage from "./prototypes/edtech/eclytics";
 import MetroPath from "./prototypes/startup/bmrcl";
-
+import Friends from "./friends";
+import Mood from "./mood";
+import Visibl from "./prototypes/startup/visibl";
 export default function App(){
   return(
     <>
@@ -34,6 +36,7 @@ export default function App(){
             <Route path="/fameline" element={<Dashboard/>} />
             <Route path="/eclyctics" element={<EclyticsLandingPage/>} />
             <Route path="/bmrcl" element={<MetroPath/>} />
+            <Route path="/visibl" element={<Visibl/>} />
 
 
          <Route
@@ -42,6 +45,8 @@ export default function App(){
             <Wrapped2025 />
           }
         />
+        <Route path="/friends" element={<Friends />} />
+        <Route path="/friends/mood" element={<Mood />} />
       </Routes>
     </Router>
     </>

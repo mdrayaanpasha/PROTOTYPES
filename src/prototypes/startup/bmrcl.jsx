@@ -1,13 +1,5 @@
-import { useEffect, useState, useMemo, useRef } from "react";
-import { 
-  ArrowRight, 
-  MapPin, 
-  Navigation, 
-  ChevronDown, 
-  ChevronUp, 
-  Search, 
-  ArrowUpDown 
-} from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
+import { ArrowRight, MapPin, Navigation, ChevronDown, ChevronUp } from "lucide-react";
 
 // --- Configuration ---
 const THEME = {
@@ -65,104 +57,14 @@ const GRAPH = {
     "Biocon Hebbagodi": { line: "Yellow", children: ["Huskur Road"] }
 };
 
-// --- Custom Searchable Dropdown Component ---
-const StationSearch = ({ label, value, onChange, stations, icon: Icon }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const wrapperRef = useRef(null);
-
-  // Filter logic
-  const filtered = stations.filter(s => 
-    s.name.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Close when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Update internal search when value changes externally
-  useEffect(() => {
-    setSearch(""); 
-  }, [value]);
-
-  return (
-    <div className="relative group flex-1" ref={wrapperRef}>
-      <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1.5 block pl-1">{label}</label>
-      
-      {/* The Input Box */}
-      <div 
-        className="relative flex items-center bg-gray-50 hover:bg-gray-100 border-b-2 border-transparent hover:border-gray-200 focus-within:border-black transition-colors rounded-t-lg p-3 cursor-pointer"
-        onClick={() => setIsOpen(true)}
-      >
-        <Icon className="w-5 h-5 text-gray-400 mr-3" />
-        
-        {isOpen ? (
-          <input 
-            autoFocus
-            type="text" 
-            className="bg-transparent outline-none w-full text-lg font-bold text-gray-900 placeholder-gray-300"
-            placeholder="Type station name..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        ) : (
-          <div className="text-lg font-bold text-gray-900 truncate w-full">{value}</div>
-        )}
-        
-        <div className="ml-2 text-gray-300">
-          <Search className="w-4 h-4" />
-        </div>
-      </div>
-
-      {/* The Dropdown List */}
-      {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-xl rounded-b-xl border border-t-0 border-gray-100 max-h-64 overflow-y-auto z-[100] animate-in fade-in zoom-in-95 duration-100">
-          {filtered.length > 0 ? (
-            filtered.map((s) => (
-              <div 
-                key={s.name}
-                className="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center justify-between group/item border-b border-gray-50 last:border-0"
-                onClick={() => {
-                  onChange(s.name);
-                  setIsOpen(false);
-                  setSearch("");
-                }}
-              >
-                <span className="font-medium text-gray-700 group-hover/item:text-black">{s.name}</span>
-                {/* Line Indicator Dot */}
-                <div className={`w-2.5 h-2.5 rounded-full ${THEME[s.line].bg} ring-2 ring-white`}></div>
-              </div>
-            ))
-          ) : (
-            <div className="p-4 text-center text-gray-400 text-sm">No stations found</div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
-
 export default function MetroPathSmart() {
   const [path, setPath] = useState([]);
   const [processedSegments, setProcessedSegments] = useState([]);
   const [start, setStart] = useState("Cubbon Park");
-  const [destination, setDestination] = useState("Electronic City");
+  const [destination, setDestination] = useState("Biocon Hebbagodi");
   const [expandedGroups, setExpandedGroups] = useState({});
 
-  // Prepare full station objects for the search component
-  const stationList = useMemo(() => {
-    return Object.keys(GRAPH).sort().map(name => ({
-      name,
-      line: GRAPH[name].line
-    }));
-  }, []);
+  const stationList = useMemo(() => Object.keys(GRAPH).sort(), []);
 
   // 1. Calculate BFS Path
   useEffect(() => {
@@ -187,12 +89,13 @@ export default function MetroPathSmart() {
     }
     const result = bfs(start, destination);
     setPath(result);
-    setExpandedGroups({}); // Reset expansions
+    setExpandedGroups({}); // Reset expansions on new search
   }, [start, destination]);
 
-  // 2. Process Path into View Segments (Smart Collapsing)
+  // 2. Process Path into View Segments (The "Collapser" Logic)
   useEffect(() => {
     if (path.length === 0) return;
+
     const segments = [];
     let buffer = [];
 
@@ -201,18 +104,25 @@ export default function MetroPathSmart() {
         const isStart = index === 0;
         const isEnd = index === path.length - 1;
         const nextNode = path[index + 1];
+        
+        // Check if this station is a "Key Node" (Start, End, or Interchange)
+        // Interchange = current line is diff from next line
         const isInterchange = nextNode && nextNode[1] !== line;
 
         if (isStart || isEnd || isInterchange) {
+            // If we have a buffer of intermediate stations, push them as a group first
             if (buffer.length > 0) {
                 segments.push({ type: 'collapsed', nodes: buffer, line: buffer[0][1] });
                 buffer = [];
             }
+            // Push the Key Node
             segments.push({ type: 'station', node, index, isSwitch: isInterchange });
         } else {
+            // It's an intermediate station, add to buffer
             buffer.push(node);
         }
     });
+
     setProcessedSegments(segments);
   }, [path]);
 
@@ -220,87 +130,55 @@ export default function MetroPathSmart() {
     setExpandedGroups(prev => ({ ...prev, [index]: !prev[index] }));
   };
 
-  const swapStations = () => {
-    const temp = start;
-    setStart(destination);
-    setDestination(temp);
-  };
-
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans flex flex-col items-center">
+    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col items-center">
       
-      {/* --- Smart Search Header --- */}
-      <div className="w-full bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
-        <div className="max-w-3xl mx-auto px-4 py-4 md:py-6">
-            
-            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 relative">
-                
-                {/* Search 1 */}
-                <StationSearch 
-                  label="Origin" 
-                  value={start} 
-                  onChange={setStart} 
-                  stations={stationList} 
-                  icon={Navigation}
-                />
-
-                {/* Swap Button (Floating or inline) */}
-                <button 
-                  onClick={swapStations}
-                  className="absolute right-4 top-[38px] md:static md:mt-4 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-10 group"
-                  aria-label="Swap Stations"
-                >
-                  <ArrowUpDown className="w-4 h-4 text-gray-500 group-hover:text-black transition-transform group-hover:rotate-180 duration-300" />
-                </button>
-
-                {/* Search 2 */}
-                <StationSearch 
-                  label="Destination" 
-                  value={destination} 
-                  onChange={setDestination} 
-                  stations={stationList} 
-                  icon={MapPin}
-                />
-
-            </div>
-
-             {/* Stats Bar */}
-             {path.length > 0 && (
-                <div className="mt-4 flex gap-6 text-sm text-gray-500 pl-2">
-                    <span><b>{path.length}</b> stops</span>
-                    <span>•</span>
-                    <span><b>{Math.round(path.length * 2.5)}</b> min</span>
+      {/* --- Inputs --- */}
+      <div className="w-full bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-3xl mx-auto px-6 py-6">
+            <div className="flex flex-col md:flex-row gap-6 justify-between">
+                <div className="flex-1 flex flex-col gap-4">
+                    <div className="group relative">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1 block">From</label>
+                        <select value={start} onChange={(e) => setStart(e.target.value)} className="w-full bg-transparent text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 focus:border-black outline-none appearance-none">{stationList.map(s => <option key={s} value={s}>{s}</option>)}</select>
+                    </div>
+                    <div className="group relative">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1 block">To</label>
+                        <select value={destination} onChange={(e) => setDestination(e.target.value)} className="w-full bg-transparent text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 focus:border-black outline-none appearance-none">{stationList.map(s => <option key={s} value={s}>{s}</option>)}</select>
+                    </div>
                 </div>
-            )}
+            </div>
         </div>
       </div>
 
-      {/* --- Route Visualization --- */}
+      {/* --- Route Visualizer --- */}
       <div className="w-full max-w-3xl mx-auto p-6 md:p-12 pb-32">
         {path.length === 0 ? (
-            <div className="text-center py-20 opacity-40">
-              <Navigation className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-              <p className="text-gray-400 font-medium">Select stations to view route</p>
-            </div>
+            <div className="text-center py-20 opacity-40"><Navigation className="w-12 h-12 mx-auto mb-4" /><p>Finding Route...</p></div>
         ) : (
             <div className="relative">
                 {processedSegments.map((segment, segIndex) => {
                     
+                    // --- Render Key Stations (Start, End, Interchange) ---
                     if (segment.type === 'station') {
                         const [station, line] = segment.node;
                         const theme = THEME[line];
                         const isStart = segment.index === 0;
                         const isEnd = segment.index === path.length - 1;
+                        
+                        // Look ahead for switch color
                         const nextNode = path[segment.index + 1];
                         const nextTheme = nextNode ? THEME[nextNode[1]] : theme;
 
                         return (
-                            <div key={`st-${segIndex}`} className="grid grid-cols-[50px_40px_1fr] relative">
-                                <div className="text-right pr-4 pt-1">
-                                    <span className={`text-[10px] font-mono font-bold ${isStart || isEnd ? "text-black" : "text-gray-300"}`}>
+                            <div key={`st-${segIndex}`} className="grid grid-cols-[60px_40px_1fr] relative">
+                                {/* Time/Index */}
+                                <div className="text-right pr-6 pt-1">
+                                    <span className={`text-xs font-mono font-medium ${isStart || isEnd ? "text-black" : "text-gray-300"}`}>
                                         {segment.index + 1}
                                     </span>
                                 </div>
+                                {/* Line & Dot */}
                                 <div className="relative flex justify-center">
                                     {!isEnd && (
                                         <div 
@@ -312,24 +190,28 @@ export default function MetroPathSmart() {
                                         {(isStart || isEnd) && <div className={`absolute inset-0 m-auto w-2 h-2 rounded-full ${theme.bg}`}></div>}
                                     </div>
                                 </div>
+                                {/* Content */}
                                 <div className="pb-8 pl-4">
-                                    <h3 className={`leading-tight ${isStart || isEnd ? "font-bold text-black text-xl" : "font-medium text-gray-800 text-lg"}`}>
+                                    <h3 className={`text-lg leading-tight ${isStart || isEnd ? "font-bold text-black text-xl" : "font-medium text-gray-800"}`}>
                                         {station}
                                     </h3>
                                     {segment.isSwitch && (
-                                        <div className="mt-2 flex items-center gap-3 px-3 py-2 bg-gray-50 border border-gray-100 rounded-lg w-fit">
-                                            <ArrowRight className="w-4 h-4 text-gray-400" />
+                                        <div className="mt-3 flex items-center gap-3 p-3 bg-white border border-gray-100 rounded-lg shadow-sm w-fit">
+                                            <div className="p-1.5 bg-gray-100 rounded-md"><ArrowRight className="w-4 h-4 text-gray-500" /></div>
                                             <div>
-                                                <div className="text-[10px] uppercase font-bold text-gray-400">Interchange</div>
-                                                <div className={`text-xs font-bold ${nextTheme.text}`}>To {nextNode[1]} Line</div>
+                                                <div className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Interchange</div>
+                                                <div className={`text-sm font-bold ${nextTheme.text}`}>Switch to {nextNode[1]} Line</div>
                                             </div>
                                         </div>
                                     )}
+                                    {isStart && <div className="mt-1 flex items-center gap-1 text-xs font-bold text-gray-400 uppercase tracking-wider"><MapPin className="w-3 h-3"/> Depart</div>}
+                                    {isEnd && <div className="mt-1 flex items-center gap-1 text-xs font-bold text-gray-400 uppercase tracking-wider"><MapPin className="w-3 h-3"/> Arrive</div>}
                                 </div>
                             </div>
                         );
                     } 
                     
+                    // --- Render Collapsed Group ---
                     else {
                         const theme = THEME[segment.line];
                         const isExpanded = expandedGroups[segIndex];
@@ -337,31 +219,39 @@ export default function MetroPathSmart() {
 
                         return (
                             <div key={`grp-${segIndex}`}>
+                                {/* The Toggle Button Row */}
                                 <div 
                                     onClick={() => toggleGroup(segIndex)}
-                                    className="grid grid-cols-[50px_40px_1fr] relative group cursor-pointer"
+                                    className="grid grid-cols-[60px_40px_1fr] relative group cursor-pointer"
                                 >
-                                    <div className="text-right pr-4 pt-1"></div>
+                                    <div className="text-right pr-6 pt-1"></div>
                                     <div className="relative flex justify-center">
+                                        {/* Background Line (Dotted if collapsed, Solid if expanded) */}
                                         <div className="absolute top-0 bottom-0 w-[4px] z-0 flex flex-col items-center overflow-hidden">
-                                             {!isExpanded && <div className="h-full w-[2px] border-l-2 border-dotted border-gray-300"></div>}
+                                             {!isExpanded && (
+                                                 <div className="h-full w-[2px] border-l-2 border-dotted border-gray-300"></div>
+                                             )}
                                              {isExpanded && <div className="h-full w-[4px]" style={{ background: theme.hex }}></div>}
                                         </div>
-                                        <div className={`relative z-10 w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm hover:scale-110 transition-transform`}>
+                                        
+                                        {/* The "Plus" Icon on the line */}
+                                        <div className={`relative z-10 w-6 h-6 mt-0 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform`}>
                                             {isExpanded ? <ChevronUp className="w-3 h-3 text-gray-400" /> : <ChevronDown className="w-3 h-3 text-gray-400" />}
                                         </div>
                                     </div>
-                                    <div className="pb-8 pl-4 pt-1">
+                                    <div className="pb-8 pl-4 pt-0.5">
                                         <span className="text-xs font-bold text-gray-400 uppercase tracking-widest group-hover:text-gray-600 transition-colors">
                                             {isExpanded ? "Hide Stops" : `${count} stops`}
                                         </span>
                                     </div>
                                 </div>
 
-                                {isExpanded && segment.nodes.map(([station]) => (
-                                    <div key={station} className="grid grid-cols-[50px_40px_1fr] relative animate-in slide-in-from-top-2 duration-300 fade-in">
-                                        <div className="text-right pr-4 pt-1"></div>
+                                {/* Expanded Content */}
+                                {isExpanded && segment.nodes.map(([station], i) => (
+                                    <div key={station} className="grid grid-cols-[60px_40px_1fr] relative animate-in slide-in-from-top-2 duration-300">
+                                        <div className="text-right pr-6 pt-1"></div>
                                         <div className="relative flex justify-center">
+                                            {/* Solid line continues through expanded items */}
                                             <div className="absolute top-[-10px] bottom-[-10px] w-[4px] z-0" style={{ background: theme.hex }}></div>
                                             <div className="relative z-10 w-2 h-2 mt-2 rounded-full bg-white border-2 border-gray-300"></div>
                                         </div>
