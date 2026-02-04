@@ -1,220 +1,122 @@
 import React from 'react';
 import { 
-  GitMerge, 
-  Clock, 
-  AlertTriangle, 
-  CheckCircle2, 
   Play, 
+  AlertCircle, 
+  Truck, 
+  Factory, 
+  FileSearch, 
   History, 
-  ArrowRight,
-  Zap,
-  Users,
-  Settings,
-  ChevronRight,
-  FileText
+  Ban,
+  MessageSquareText,
+  ShieldAlert
 } from 'lucide-react';
 
-const SOPEngine = () => {
+const OutsourcedSOP = () => {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans p-8 flex justify-center">
-      <div className="w-full max-w-7xl h-[calc(100vh-64px)] grid grid-cols-12 gap-6">
-
-        {/* --- LEFT SIDEBAR: SOP LIBRARY (3 Cols) --- */}
-        <div className="col-span-3 bg-zinc-900/50 border border-zinc-800 rounded-3xl p-4 flex flex-col">
-          <div className="flex items-center gap-2 mb-6 px-2 pt-2">
-             <div className="bg-purple-500/10 p-2 rounded-lg text-purple-400">
-                <GitMerge size={20} />
-             </div>
-             <h2 className="font-semibold text-white">Process Library</h2>
-          </div>
-
-          {/* Search/Filter */}
-          <div className="mb-4">
-            <input type="text" placeholder="Search processes..." className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-sm text-zinc-300 focus:outline-none focus:border-purple-500/50" />
-          </div>
-
-          {/* List */}
-          <div className="space-y-2 overflow-y-auto flex-1 pr-1 custom-scrollbar">
-             {/* Active Item */}
-             <div className="p-3 bg-zinc-800 border-l-2 border-purple-500 rounded-r-xl cursor-pointer">
-                <div className="flex justify-between items-start mb-1">
-                    <h3 className="text-sm font-medium text-white">Custom Upholstery</h3>
-                    <span className="text-[10px] bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded border border-red-500/20">Critical</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                    <Clock size={10} /> <span>Avg: 14 Days</span>
-                </div>
-             </div>
-
-             {/* Other Items */}
-             <div className="p-3 hover:bg-zinc-800/50 border-l-2 border-transparent rounded-r-xl cursor-pointer transition-colors group">
-                <div className="flex justify-between items-start mb-1">
-                    <h3 className="text-sm font-medium text-zinc-400 group-hover:text-zinc-200">Timber Procurement</h3>
-                    <span className="text-[10px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20">Optimal</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-zinc-500">
-                    <Clock size={10} /> <span>Avg: 3 Days</span>
-                </div>
-             </div>
-
-             <div className="p-3 hover:bg-zinc-800/50 border-l-2 border-transparent rounded-r-xl cursor-pointer transition-colors group">
-                <div className="flex justify-between items-start mb-1">
-                    <h3 className="text-sm font-medium text-zinc-400 group-hover:text-zinc-200">White Glove Delivery</h3>
-                    <span className="text-[10px] bg-amber-500/10 text-amber-400 px-1.5 py-0.5 rounded border border-amber-500/20">Review</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-zinc-500">
-                    <Clock size={10} /> <span>Avg: 2 Days</span>
-                </div>
-             </div>
-          </div>
-
-          <div className="mt-4 pt-4 border-t border-zinc-800">
-             <button className="w-full py-2 bg-zinc-800 hover:bg-zinc-700 text-xs font-medium rounded-lg text-zinc-300 transition-colors flex items-center justify-center gap-2">
-                <FileText size={14}/> Import New PDF
-             </button>
+    <div className="min-h-screen bg-stone-950 text-stone-200 p-6 font-sans">
+      <div className="max-w-6xl mx-auto grid grid-cols-12 gap-6">
+        
+        {/* LEFT: OUTSOURCED SOPs */}
+        <div className="col-span-3 bg-stone-900/50 border border-stone-800 rounded-2xl p-4">
+          <h2 className="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-4 px-2">Active SOPs</h2>
+          <div className="space-y-2">
+            <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+              <p className="font-bold text-sm text-white">SOP: Solid Wood Bed</p>
+              <p className="text-[10px] text-red-400 font-medium italic">Vendor: Jodhpur Unit B</p>
+            </div>
+            <div className="p-3 bg-stone-800/50 rounded-xl opacity-50">
+              <p className="font-bold text-sm">SOP: Marble Top Table</p>
+              <p className="text-[10px] text-stone-400 font-medium italic">Vendor: Kishangarh Allied</p>
+            </div>
           </div>
         </div>
 
+        {/* CENTER: VENDOR FLOW MONITOR */}
+        <div className="col-span-6 bg-stone-900 border border-stone-800 rounded-3xl p-8 relative">
+          <div className="flex justify-between items-center mb-10">
+            <div>
+              <h1 className="text-xl font-black text-white">SOP: Solid Wood Bed</h1>
+              <p className="text-xs text-stone-500">Tracking: Saharanpur Manufacturing Hub</p>
+            </div>
+            <div className="px-3 py-1 bg-red-500/20 border border-red-500/40 rounded-lg text-red-400 text-[10px] font-bold">
+              STOPPED
+            </div>
+          </div>
 
-        {/* --- CENTER STAGE: THE LIVE FLOW (6 Cols) --- */}
-        <div className="col-span-6 flex flex-col gap-6">
-            
-            {/* Header */}
-            <div className="flex justify-between items-center bg-zinc-900/50 border border-zinc-800 p-4 rounded-3xl backdrop-blur-sm">
+          {/* STEP 1: COMPLETED */}
+          <div className="mb-12 border-l-2 border-stone-800 ml-4 pl-8 relative">
+            <div className="absolute -left-[9px] top-0 h-4 w-4 bg-emerald-500 rounded-full border-4 border-stone-950"></div>
+            <div className="bg-stone-800/40 p-4 rounded-xl border border-stone-800 opacity-60">
+              <div className="flex justify-between items-center">
+                <p className="text-sm font-bold">Step 1: Raw Material Seasoning</p>
+                <span className="text-[10px] text-emerald-500 font-mono">VERIFIED</span>
+              </div>
+            </div>
+          </div>
+
+          {/* STEP 2: THE MANUFACTURER DELAY */}
+          <div className="mb-12 border-l-2 border-stone-800 ml-4 pl-8 relative">
+            <div className="absolute -left-[9px] top-0 h-4 w-4 bg-red-500 rounded-full border-4 border-stone-950 animate-pulse"></div>
+            <div className="bg-red-950/20 p-5 rounded-xl border-2 border-red-500 shadow-lg shadow-red-900/10">
+              <div className="flex gap-4">
+                <div className="bg-red-500/20 p-2 rounded-lg h-fit text-red-500">
+                  <Factory size={24} />
+                </div>
                 <div>
-                    <h1 className="text-xl font-semibold text-white">Custom Upholstery Flow</h1>
-                    <div className="flex items-center gap-3 mt-1">
-                        <span className="text-xs text-zinc-500 flex items-center gap-1"><History size={12}/> Last updated 2 days ago</span>
-                        <span className="text-xs text-zinc-500 flex items-center gap-1"><Users size={12}/> 4 Employees involved</span>
-                    </div>
+                  <p className="text-[10px] font-bold text-red-400 uppercase tracking-tighter mb-1">Step 2: Joinery & Structure</p>
+                  <p className="text-lg font-bold text-white leading-tight">Vendor Equipment Failure</p>
+                  <p className="text-sm text-red-200 mt-2 bg-red-500/10 p-2 rounded italic">
+                    "The hydraulic press at the vendor's site is broken. They are waiting for parts from Delhi."
+                  </p>
                 </div>
-                <div className="text-right">
-                    <div className="text-2xl font-bold font-mono text-red-400">48h</div>
-                    <div className="text-[10px] uppercase tracking-wider text-zinc-500 font-medium">Delay Detected</div>
-                </div>
+              </div>
             </div>
+          </div>
 
-            {/* The Visual Engine */}
-            <div className="flex-1 bg-zinc-900 border border-zinc-800 rounded-3xl p-8 relative overflow-hidden flex flex-col items-center justify-center space-y-8">
-                {/* Background Grid */}
-                <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(#4f46e5 1px, transparent 1px)', backgroundSize: '24px 24px'}}></div>
-
-                {/* Step 1: Good */}
-                <div className="relative z-10 w-64 bg-zinc-800 border border-zinc-700 rounded-xl p-4 flex items-center gap-4 opacity-50">
-                    <div className="h-8 w-8 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center border border-emerald-500/30">
-                        <CheckCircle2 size={16} />
-                    </div>
-                    <div>
-                        <p className="text-xs text-zinc-500 uppercase font-medium">Step 1</p>
-                        <p className="text-sm font-medium text-zinc-300">Frame Selection</p>
-                    </div>
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-zinc-700"><ArrowRight className="rotate-90" size={20}/></div>
-                </div>
-
-                {/* Step 2: Good */}
-                <div className="relative z-10 w-64 bg-zinc-800 border border-zinc-700 rounded-xl p-4 flex items-center gap-4 opacity-50">
-                     <div className="h-8 w-8 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center border border-emerald-500/30">
-                        <CheckCircle2 size={16} />
-                    </div>
-                    <div>
-                        <p className="text-xs text-zinc-500 uppercase font-medium">Step 2</p>
-                        <p className="text-sm font-medium text-zinc-300">Foam Application</p>
-                    </div>
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-zinc-700"><ArrowRight className="rotate-90" size={20}/></div>
-                </div>
-
-                {/* Step 3: THE PROBLEM */}
-                <div className="relative z-10 w-72 bg-red-950/30 border border-red-500/50 rounded-xl p-4 flex items-center gap-4 shadow-[0_0_30px_-5px_rgba(239,68,68,0.2)] ring-1 ring-red-500/30">
-                    <div className="absolute -right-3 -top-3 bg-red-500 text-white p-1 rounded-full shadow-lg animate-bounce">
-                        <AlertTriangle size={14} />
-                    </div>
-                    <div className="h-10 w-10 rounded-full bg-red-500/20 text-red-500 flex items-center justify-center border border-red-500/30">
-                        <Clock size={20} />
-                    </div>
-                    <div className="flex-1">
-                        <div className="flex justify-between items-center mb-1">
-                            <p className="text-xs text-red-400 uppercase font-bold">Step 3 • Bottleneck</p>
-                            <span className="text-[10px] text-zinc-400">Owner: Marcus</span>
-                        </div>
-                        <p className="text-sm font-bold text-white">Fabric Inspection</p>
-                        <p className="text-xs text-red-300 mt-1">Avg Time: 52 hours (Target: 4h)</p>
-                    </div>
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-zinc-700"><ArrowRight className="rotate-90" size={20}/></div>
-                </div>
-
-                 {/* Step 4: Pending */}
-                 <div className="relative z-10 w-64 bg-zinc-900 border border-zinc-800 border-dashed rounded-xl p-4 flex items-center gap-4 opacity-40">
-                     <div className="h-8 w-8 rounded-full bg-zinc-800 text-zinc-500 flex items-center justify-center border border-zinc-700">
-                        <div className="h-2 w-2 bg-zinc-600 rounded-full"></div>
-                    </div>
-                    <div>
-                        <p className="text-xs text-zinc-500 uppercase font-medium">Step 4</p>
-                        <p className="text-sm font-medium text-zinc-300">Final Stitching</p>
-                    </div>
-                </div>
+          {/* STEP 3: BLOCKED */}
+          <div className="ml-4 pl-8 relative opacity-20">
+            <div className="absolute -left-[9px] top-0 h-4 w-4 bg-stone-700 rounded-full border-4 border-stone-950"></div>
+            <div className="p-4 bg-stone-800 rounded-xl border border-stone-800">
+              <p className="text-sm font-medium">Step 3: Hand Finishing</p>
             </div>
+          </div>
         </div>
 
-
-        {/* --- RIGHT SIDEBAR: AI OPTIMIZER (3 Cols) --- */}
-        <div className="col-span-3 flex flex-col gap-6">
+        {/* RIGHT: THE SMART FIX */}
+        <div className="col-span-3 space-y-4">
+          <div className="bg-stone-100 p-5 rounded-2xl shadow-2xl">
+            <div className="flex items-center gap-2 mb-4 text-stone-900">
+              <ShieldAlert size={18} />
+              <h3 className="font-black text-[11px] uppercase tracking-tighter">AI Recovery Plan</h3>
+            </div>
             
-            {/* The Analysis Card */}
-            <div className="bg-gradient-to-b from-indigo-900/20 to-zinc-900 border border-indigo-500/30 rounded-3xl p-5">
-                <div className="flex items-center gap-2 mb-4">
-                    <Zap size={16} className="text-indigo-400" />
-                    <h3 className="text-sm font-semibold text-indigo-100">AI Root Cause Analysis</h3>
-                </div>
-                <p className="text-sm text-zinc-300 leading-relaxed mb-4">
-                    Step 3 is stalling because "Fabric QC" currently requires a <span className="text-white font-medium">Manager Signature</span> (Marcus), who is only on the floor 4 hours/day.
+            <div className="space-y-4 text-stone-800">
+              <div className="border-b border-stone-300 pb-3">
+                <p className="text-[10px] font-bold text-stone-400 uppercase">Impact:</p>
+                <p className="text-xs font-bold">This SOP will miss the delivery date by <span className="text-red-600 underline">9 days</span>.</p>
+              </div>
+
+              <div>
+                <p className="text-[10px] font-bold text-stone-400 uppercase mb-1">Recommendation:</p>
+                <p className="text-xs leading-snug">
+                  Shift the remaining structural work to <b>"Vendor B (Jodhpur)"</b> who has idle machine capacity.
                 </p>
-                
-                <div className="bg-zinc-950/50 rounded-lg p-3 border border-zinc-800/50">
-                    <div className="flex justify-between text-xs text-zinc-500 mb-1">
-                        <span>Current Flow Cost</span>
-                        <span className="text-red-400">High</span>
-                    </div>
-                    <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden mb-3">
-                        <div className="bg-red-500 h-full w-[85%]"></div>
-                    </div>
-                    <div className="flex justify-between text-xs text-zinc-500 mb-1">
-                        <span>Proposed Flow Cost</span>
-                        <span className="text-emerald-400">Low</span>
-                    </div>
-                     <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
-                        <div className="bg-emerald-500 h-full w-[35%]"></div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
 
-            {/* The Solution Card */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 flex-1 flex flex-col">
-                 <div className="flex items-center gap-2 mb-4">
-                    <Settings size={16} className="text-zinc-400" />
-                    <h3 className="text-sm font-semibold text-zinc-100">Optimization Plan</h3>
-                </div>
-
-                <div className="space-y-3">
-                    <div className="flex gap-3 items-start">
-                        <div className="mt-0.5 min-w-[16px] flex justify-center"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div></div>
-                        <p className="text-xs text-zinc-300"><strong className="text-white">Action:</strong> Remove "Manager Sign-off" for fabrics under $50/yard.</p>
-                    </div>
-                    <div className="flex gap-3 items-start">
-                        <div className="mt-0.5 min-w-[16px] flex justify-center"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div></div>
-                         <p className="text-xs text-zinc-300"><strong className="text-white">Action:</strong> Delegate approval to "Senior Stitcher" (Sarah) via Mobile App.</p>
-                    </div>
-                </div>
-
-                <div className="mt-auto pt-6">
-                    <button className="w-full py-3 bg-white hover:bg-zinc-200 text-black text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg shadow-white/5">
-                        <Play size={16} className="fill-black"/> Deploy New SOP
-                    </button>
-                    <p className="text-[10px] text-center text-zinc-600 mt-3">
-                        Updates will be pushed to 3 employee devices.
-                    </p>
-                </div>
+          <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-xl flex flex-col items-center transition-all shadow-lg active:scale-95">
+            <div className="flex items-center gap-2">
+              <History size={18} />
+              <span>RE-ASSIGN SOP</span>
             </div>
+            <p className="text-[9px] uppercase mt-1 opacity-80">Shift production to backup vendor</p>
+          </button>
 
+          <button className="w-full bg-stone-800 text-stone-400 font-bold py-3 rounded-xl flex items-center justify-center gap-2 border border-stone-700 hover:text-white transition-colors">
+            <MessageSquareText size={16} />
+            <span className="text-xs">Chat with Vendor</span>
+          </button>
         </div>
 
       </div>
@@ -222,4 +124,4 @@ const SOPEngine = () => {
   );
 };
 
-export default SOPEngine;
+export default OutsourcedSOP;
