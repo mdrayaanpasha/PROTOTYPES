@@ -16,6 +16,8 @@ import MetroPath from "./prototypes/startup/bmrcl";
 import Friends from "./friends";
 import Mood from "./mood";
 import Visibl from "./prototypes/startup/visibl";
+
+import HyperPremiumLamp from "./prototypes/startup/lamp";
 export default function App(){
   return(
     <>
@@ -37,6 +39,7 @@ export default function App(){
             <Route path="/eclyctics" element={<EclyticsLandingPage/>} />
             <Route path="/bmrcl" element={<MetroPath/>} />
             <Route path="/visibl" element={<Visibl/>} />
+            <Route path="/lamp" element={<HyperPremiumLamp/>} />
 
 
          <Route
