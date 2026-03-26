@@ -15,6 +15,7 @@ import EclyticsLandingPage from "./prototypes/edtech/eclytics";
 import MetroPath from "./prototypes/startup/bmrcl";
 import Friends from "./friends";
 import Mood from "./mood";
+import HyperPremiumOpenHeart from "./prototypes/others/oh";
 import Visibl from "./prototypes/startup/visibl";
 
 import HyperPremiumLamp from "./prototypes/startup/lamp";
@@ -40,6 +41,7 @@ export default function App(){
             <Route path="/bmrcl" element={<MetroPath/>} />
             <Route path="/visibl" element={<Visibl/>} />
             <Route path="/lamp" element={<HyperPremiumLamp/>} />
+            <Route path="/oh" element={<HyperPremiumOpenHeart/>} />
 
 
          <Route
