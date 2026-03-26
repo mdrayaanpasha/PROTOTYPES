@@ -8,7 +8,7 @@ const HyperPremiumOpenHeart = () => {
       title: "Melvin",
       excerpt: "A boy who loved music, followed rhythm, found courage, and transformed dreams into steady progress through passion and perseverance. 🎶❤️",
       link: "https://www.instagram.com/reels/DSXVfVCE87r/",
-      img:"https://instagram.fblr4-3.fna.fbcdn.net/v/t51.82787-15/589247298_18318568267219569_3539675363203924098_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&ig_cache_key=Mzc4OTU5MjEyMzMxOTUwNDYxOTE4MzE4NTY4MjYxMjE5NTY5.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjcyMHg0MDYuc2RyLkMzIn0%3D&_nc_ohc=8spSfBvJ5WIQ7kNvwEGjq-K&_nc_oc=AdppgH_ln4sqDJ132ryCpYAkptkDrdc92E7gpAWUyWHTLQJrZNUEQELLP3MB3nxIkoAhkQh4jOhBk2Z038MuEult&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-3.fna&_nc_gid=jvHr7xK9aAH9w4fXka7oUQ&_nc_ss=7a32e&oh=00_AfwEomzWTZsd17kAJPcOBkFMBLNBE4gL4EpVFXMBU3z9dQ&oe=69C85584"
+      img:"https://ik.imagekit.io/yylpuqff5/OH/1.jpg"
     },
     {
       id: 2,
@@ -16,7 +16,7 @@ const HyperPremiumOpenHeart = () => {
       title: "Lohit Narayan",
       excerpt: "From challenges to chapters of leadership. Today, he stands tall as the University’s Council Representative and the SJU Student Council President.",
       link: "https://www.instagram.com/reel/DOaWC0uE7pV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      img:"https://instagram.fblr4-1.fna.fbcdn.net/v/t51.82787-15/559717547_18308092024219569_6618988061879785432_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=109&ig_cache_key=MzcxODM4MTM5MzQxNzU4MzE4OTE4MzA4MDkyMDE4MjE5NTY5.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjExMjV4MTk5OS5zZHIuQzMifQ%3D%3D&_nc_ohc=6IRYrx2XqaYQ7kNvwH7W7FX&_nc_oc=AdpbCGrLd9nNhwTJEpRlp2Au58_obi50UR483DqKlZcAWopYMKhffXdTo_QDOpgB3lV6b3VSXKpr3JwAmRDzXr_r&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-1.fna&_nc_gid=sC0OLgEBMtr0q-SJQaVbOQ&_nc_ss=7a32e&oh=00_AfwWhPYpHWxKes_AtL0aANaYmsUrml0LAvPqpcbTO4pSAg&oe=69C8588A"    
+      img:"https://ik.imagekit.io/yylpuqff5/OH/2.jpg"    
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ const HyperPremiumOpenHeart = () => {
       title: "Pillars of Strength",
       excerpt: "Every teacher carries a story, a smile, and a message just for their students. The answers that will melt your heart.",
       link: "https://www.instagram.com/reel/DONCaR7k5_-/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      img: "https://instagram.fblr4-3.fna.fbcdn.net/v/t51.82787-15/560418500_18308133532219569_4213782155130897067_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=100&ig_cache_key=MzcxNDYzNTg2OTcwMzA4NjA3ODE4MzA4MTMzNTI2MjE5NTY5.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjExMjV4MTk5OS5zZHIuQzMifQ%3D%3D&_nc_ohc=cXbYLEfsej8Q7kNvwGXHcE1&_nc_oc=Adp1tPYpLT9yIc1-p3rvuFLqBXEi3SUQlGonRXYr6YcCxvWiZUSxtUjTDbDoQ_ILxOoHL5zVMeq8_sK5ljGPbHQI&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-3.fna&_nc_gid=s8sOcEwE0kjROKCXI6wM5g&_nc_ss=7a32e&oh=00_AfxIgP1fVrRB0mPJXD1Om6uqXhHBnFCy18LsjI26imQQCg&oe=69C84228"
+      img: "https://ik.imagekit.io/yylpuqff5/OH/3.jpg"
     }
   ];
 
@@ -229,7 +229,7 @@ const HyperPremiumOpenHeart = () => {
           {/* Card 1 - Square */}
           <div className="aspect-square bg-zinc-100 overflow-hidden border border-zinc-200 group cursor-pointer">
             <img 
-              src="https://instagram.fblr4-2.fna.fbcdn.net/v/t51.71878-15/523342794_23958688823754329_8703890252635478067_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=107&ig_cache_key=MzY4NDUxNzE2Njc5NTA2MDE1NA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjY0MHgxMTM2LnNkci5DMyJ9&_nc_ohc=5MYoytXc3iIQ7kNvwFkNqPa&_nc_oc=AdpIT8JAIFSwHRkd__0ZQ5JTgzHkHnETF8JyLqbydkcqp3R4ZBRUoTO5o6KFjsvpg8Ler898bv934Yuf2U3rHitW&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-2.fna&_nc_gid=tkS4pEACHp9QPyUXpllBzw&_nc_ss=7a32e&oh=00_AfwZhFC8bBem-CDO5AysKqHHJhOAQE3bIpOetUuZd_GI2w&oe=69C84C86" 
+              src="https://ik.imagekit.io/yylpuqff5/OH/4.jpg"
               alt="Open Heart Event Moment 1" 
               className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:brightness-110"
             />
@@ -238,7 +238,7 @@ const HyperPremiumOpenHeart = () => {
           {/* Card 2 - Large Portrait (Spans 2 columns, 2 rows) */}
           <div className="aspect-[4/5] bg-zinc-200 md:col-span-2 md:row-span-2 overflow-hidden border border-zinc-200 group cursor-pointer">
             <img 
-            src="https://instagram.fblr4-2.fna.fbcdn.net/v/t51.82787-15/655108000_18085735871249878_4762487338943429213_n.webp?_nc_cat=107&ig_cache_key=MzMxNjM0NjQ5NjQ1MzIyNDQ2MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4OTYwLnNkci5DMyJ9&_nc_ohc=56EG5sa3BOQQ7kNvwG6KVsU&_nc_oc=AdqyqhvICIP3QnUNS1eBrmyQavGIB6fmDbIug2asY1_jOh59lBHpDvYIHPMpPuFh8jJfFR8M_YVo1VlCGIp5uzrS&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-2.fna&_nc_gid=OI7HF7CoWD6D8A1qXpe5Ow&_nc_ss=7a32e&oh=00_Afx5Ej9Z4gTyEbBGbTUMMhxa8Yh808bbeobY2yBUQ4hyqQ&oe=69C8433B"
+            src="https://ik.imagekit.io/yylpuqff5/OH/5.webp"
               alt="Open Heart Main Stage Highlight" 
               className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:brightness-110"
             />
@@ -247,7 +247,7 @@ const HyperPremiumOpenHeart = () => {
           {/* Card 3 - Square */}
           <div className="aspect-square bg-zinc-100 overflow-hidden border border-zinc-200 group cursor-pointer">
             <img 
-              src="https://instagram.fblr4-2.fna.fbcdn.net/v/t51.82787-15/656239631_18111146260755405_5302733265256211842_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=MzQ0NjgyNTkyMjc5NDc1MDU3OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4ODA9LnNkci5DMyJ9&_nc_ohc=5bthiFvk8GkQ7kNvwGBvkFs&_nc_oc=AdrmeYVhVlTgXoDVNJs7D_Mgm20GcDzDT36jDGc93RJ_IWx3bjEMmUbSkNZCZw9EhWgRhw_Z5QYNPxz7DS1smi4w&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-2.fna&_nc_gid=MmlIaHOOwuonO-RzPiMCZw&_nc_ss=7a32e&oh=00_AfwUfsjiqEVw9QQPBYaxBBjMnz6MbRFcon3vY7Yw9o_Jcw&oe=69C852D4" 
+              src="https://ik.imagekit.io/yylpuqff5/OH/6.jpg"
               alt="Open Heart Audience Interaction" 
               className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:brightness-110"
             />
@@ -256,7 +256,7 @@ const HyperPremiumOpenHeart = () => {
           {/* Card 4 - Square */}
           <div className="aspect-square bg-zinc-300 overflow-hidden border border-zinc-200 group cursor-pointer">
             <img 
-              src="https://instagram.fblr4-3.fna.fbcdn.net/v/t51.75761-15/476062441_18282586321219569_917302759607114836_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=108&ig_cache_key=MzU1ODg4NzY1NTQxMTI0MzY2MDE4MjgyNTg2MzE1MjE5NTY5.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjExNjZ4MjA3MC5zZHIuQzMifQ%3D%3D&_nc_ohc=aiov-beX008Q7kNvwGdVqzt&_nc_oc=AdoVU2wG9E-beyObnA-XaULcnoAlPm-41Ww9Qi-TtDKglhruj3MxF7HBrsetuFMEIB56SmsgVFje8nVTIlK3MkKw&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-3.fna&_nc_gid=SWJ2Kjel0pkLqw_13N7JEg&_nc_ss=7a32e&oh=00_AfxZS9hZTjhVzAu9NioLOoNETa_5cHwHhBAa62lazHl59g&oe=69C86EF9"
+              src="https://ik.imagekit.io/yylpuqff5/OH/7.jpg"
               alt="Open Heart Speaker Portrait" 
               className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:brightness-110"
             />
@@ -265,7 +265,7 @@ const HyperPremiumOpenHeart = () => {
           {/* Card 5 - Square */}
           <div className="aspect-square bg-zinc-200 overflow-hidden border border-zinc-200 group cursor-pointer">
             <img 
-              src="https://instagram.fblr4-3.fna.fbcdn.net/v/t51.75761-15/475527490_18282417409219569_1301627715596054587_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=108&ig_cache_key=MzU1NzcxMjc0ODkzNzU0MTAyMjE4MjgyNDE3NDA2MjE5NTY5.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjIyNjh4NDAzMi5zZHIuQzMifQ%3D%3D&_nc_ohc=ByE7qAeJmKYQ7kNvwHxeW6H&_nc_oc=AdplOV72O_LhnoNEjJC1KKFfvykHtpPMmogxrin_0_nvfBYAZCaZHlS3y5jU-_0iA8Ftzx9LAdvb9ZbFi1j0OGMQ&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.fblr4-3.fna&_nc_gid=SWJ2Kjel0pkLqw_13N7JEg&_nc_ss=7a32e&oh=00_AfxRYt9kFcH1xpzntvqbtY_KZhP2Uok6TPOj3uOnx8cD7Q&oe=69C851EA" 
+              src="https://ik.imagekit.io/yylpuqff5/OH/8.jpg"
               alt="Open Heart Behind the Scenes" 
               className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:brightness-110"
             />
